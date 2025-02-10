@@ -1,0 +1,27 @@
+.calculationRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.descriptionInput {
+  width: 25%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+}
+
+.numberInput {
+  width: 4rem;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+}
+
+.resultInput {
+  width: 6rem;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  background-color: #f3f4f6;
+}

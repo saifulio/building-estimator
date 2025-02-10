@@ -1,0 +1,33 @@
+.calculationTable {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.tableTitle {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.addButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  color: white;
+  cursor: pointer;
+  background-color: #3b82f6;
+  display: block;
+  margin-top: 0.5rem;
+}
+.addition {
+  background-color: #22c55e;
+}
+
+.subtraction {
+  background-color: #ef4444;
+}
