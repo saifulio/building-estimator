@@ -3,6 +3,7 @@ import styles from "./FeetInchesInput.module.css";
 const FeetInchesInput = ({ onTab, inputRef }) => {
   const [originalValue, setOriginalValue] = useState("");
   const [displayValue, setDisplayValue] = useState("");
+  const [isInvalid, setIsInvalid] = useState(false);
 
   const handleKeyDown = (e) => {
     if (e.key === "Tab") {
@@ -18,6 +19,15 @@ const FeetInchesInput = ({ onTab, inputRef }) => {
     const feet = parts[0] ? parseInt(parts[0]) : 0;
     const inches = parts[1] ? parseInt(parts[1]) : 0;
     const fraction = parts.slice(2).join(" ");
+
+    // Check for negative values
+    if (feet < 0 || inches < 0) {
+      setIsInvalid(true);
+      // Optional: you can either keep the negative value or reset it
+      return;
+    } else {
+      setIsInvalid(false);
+    }
 
     let formatted = `${feet}'`;
     if (!isNaN(inches)) formatted += `-${inches}`;
@@ -50,7 +60,7 @@ const FeetInchesInput = ({ onTab, inputRef }) => {
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
       placeholder="e.g. 12 6 1/2"
-      className={styles.feetInchesInput}
+      className={`${styles.feetInchesInput} ${isInvalid ? styles.invalid : ""}`}
     />
   );
 };

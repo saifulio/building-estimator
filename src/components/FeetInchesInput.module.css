@@ -4,3 +4,20 @@
   border: 1px solid #d1d5db;
   border-radius: 0.25rem;
 }
+
+.feetInchesInput.invalid {
+  background-color: #ffebee;
+  animation: flashBg 1s infinite;
+}
+
+@keyframes flashBg {
+  0% {
+    background-color: #ffebee;
+  }
+  50% {
+    background-color: #ffcdd2;
+  }
+  100% {
+    background-color: #ffebee;
+  }
+}

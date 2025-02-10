@@ -107,9 +107,8 @@ const CalculationSection = () => {
       <CalculationTable
         title="Subtraction"
         rows={subtractionRows}
-        addRow={() =>
-          setSubtractionRows([...subtractionRows, { id: Date.now() }])
-        }
+        setRows={setSubtractionRows}
+        addRow={() => addRow(setSubtractionRows)}
         buttonVariant="subtraction"
       />
     </div>
