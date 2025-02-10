@@ -6,10 +6,23 @@ const CalculationTable = ({ title, rows, setRows, addRow }) => {
   const inputRefs = useRef(new Map());
 
   const handleTab = (currentId) => {
-    const newId = addRow();
-    setTimeout(() => {
-      inputRefs.current.get(newId)?.focus();
-    }, 0);
+    // Find the index of the current row
+    const currentIndex = rows.findIndex((row) => row.id === currentId);
+
+    // If there's a next row, focus on it
+    if (currentIndex < rows.length - 1) {
+      const nextRow = rows[currentIndex + 1];
+      setTimeout(() => {
+        inputRefs.current.get(nextRow.id)?.focus();
+      }, 0);
+    }
+    // If we're at the last row, create a new row and focus on it
+    else {
+      const newId = addRow();
+      setTimeout(() => {
+        inputRefs.current.get(newId)?.focus();
+      }, 0);
+    }
   };
 
   return (
