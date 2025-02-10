@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./CalculationRow.module.css";
 import FeetInchesInput from "./FeetInchesInput";
-const CalculationRow = () => {
+const CalculationRow = ({ rowId, onTab, inputRef }) => {
   const [values, setValues] = useState({
     description: "",
     num1: 1,
@@ -40,7 +40,7 @@ const CalculationRow = () => {
           max="99"
         />
       ))}
-      <FeetInchesInput />
+      <FeetInchesInput onTab={onTab} inputRef={inputRef} />
       <input
         type="text"
         value={values.result}

@@ -1,8 +1,15 @@
 import { useState } from "react";
 import styles from "./FeetInchesInput.module.css";
-const FeetInchesInput = () => {
+const FeetInchesInput = ({ onTab, inputRef }) => {
   const [originalValue, setOriginalValue] = useState("");
   const [displayValue, setDisplayValue] = useState("");
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      onTab();
+    }
+  };
 
   const formatInput = (value) => {
     if (!value.trim()) return;
@@ -35,11 +42,13 @@ const FeetInchesInput = () => {
 
   return (
     <input
+      ref={inputRef}
       type="text"
       value={displayValue}
       onChange={handleChange}
       onFocus={handleFocus}
       onBlur={handleBlur}
+      onKeyDown={handleKeyDown}
       placeholder="e.g. 12 6 1/2"
       className={styles.feetInchesInput}
     />
