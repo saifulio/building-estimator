@@ -11,11 +11,18 @@ const CalculationRow = ({ rowId, onTab, inputRef }) => {
     result: 1,
   });
 
+  const [formattedInput, setFormattedInput] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     const newValues = { ...values, [name]: value };
     const result = newValues.num1 * newValues.num2 * newValues.num3;
     setValues({ ...newValues, result });
+  };
+
+  const handleFormattedInputChange = (value) => {
+    setFormattedInput(value);
+    setValues((prevValues) => ({ ...prevValues, result: value }));
   };
 
   return (
@@ -40,7 +47,11 @@ const CalculationRow = ({ rowId, onTab, inputRef }) => {
           max="99"
         />
       ))}
-      <FeetInchesInput onTab={onTab} inputRef={inputRef} />
+      <FeetInchesInput
+        onTab={onTab}
+        inputRef={inputRef}
+        onFormattedInputChange={handleFormattedInputChange}
+      />
       <input
         type="text"
         value={values.result}
