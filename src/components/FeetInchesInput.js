@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./FeetInchesInput.module.css";
+
 const FeetInchesInput = ({ onTab, inputRef, onFormattedInputChange }) => {
   const [originalValue, setOriginalValue] = useState("");
   const [displayValue, setDisplayValue] = useState("");
@@ -53,7 +54,7 @@ const FeetInchesInput = ({ onTab, inputRef, onFormattedInputChange }) => {
     formatted += '"';
 
     setDisplayValue(formatted);
-    onFormattedInputChange(formatted);
+    onFormattedInputChange(originalValue, formatted);
   };
 
   const handleFocus = () => {
