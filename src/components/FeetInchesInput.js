@@ -25,7 +25,13 @@ const FeetInchesInput = ({ onTab, inputRef, onFormattedInputChange }) => {
   };
 
   const formatInput = (value) => {
-    if (!value.trim()) return;
+    // if (!value.trim()) return;
+    value = value.trim();
+    const regex = /^[0-9\s/]+$/;
+    console.log(regex.test(value));
+    // if (regex.test(value) === false) {
+    // setIsInvalid(true);
+    //}
 
     const parts = value.trim().split(" ");
     const feet = parts[0] ? parseInt(parts[0]) : 0;

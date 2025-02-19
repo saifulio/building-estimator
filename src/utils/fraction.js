@@ -3,9 +3,11 @@
 // const multiplier = 6;
 
 function simplifyFraction(numerator, denominator) {
+  if (numerator === 0 || isNaN(numerator)) return [0, 1];
   function gcd(a, b) {
     a = Math.abs(a);
     b = Math.abs(b);
+
     return b === 0 ? a : gcd(b, a % b);
   }
 

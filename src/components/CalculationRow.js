@@ -1,10 +1,7 @@
 import { useState } from "react";
 import styles from "./CalculationRow.module.css";
 import FeetInchesInput from "./FeetInchesInput";
-import {
-  convertToFeetInchesSimplified,
-  unFormattedFractionMultiply,
-} from "../utils/fraction.js";
+import { unFormattedFractionMultiply } from "../utils/fraction.js";
 
 const CalculationRow = ({ rowId, onTab, inputRef }) => {
   const [values, setValues] = useState({
@@ -27,13 +24,16 @@ const CalculationRow = ({ rowId, onTab, inputRef }) => {
 
   const handleFormattedInputChange = (originalValue, formattedValue) => {
     setFormattedInput(formattedValue);
-    const feetInchesObject = unFormattedFractionMultiply(
+    const fIObj = unFormattedFractionMultiply(
       originalValue,
       values.num1 * values.num2 * values.num3
     );
 
-    console.log(feetInchesObject);
-    const formattedResult = `${feetInchesObject.newFeet}'-${feetInchesObject.newInches} ${feetInchesObject.numerator}/${feetInchesObject.denominator}"`;
+    let fractionPart = "";
+    if (fIObj.numerator !== 0) {
+      fractionPart = ` ${fIObj.numerator}/${fIObj.denominator}`;
+    }
+    const formattedResult = `${fIObj.newFeet}'-${fIObj.newInches}${fractionPart}"`;
     setValues((prevValues) => ({
       ...prevValues,
       result: formattedResult,
