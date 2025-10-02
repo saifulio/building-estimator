@@ -61,6 +61,7 @@ const FeetInchesInput = ({ onTab, inputRef, onFormattedInputChange }) => {
 
     setDisplayValue(formatted);
     onFormattedInputChange(originalValue, formatted);
+    console.log(originalValue);
   };
 
   const handleFocus = () => {

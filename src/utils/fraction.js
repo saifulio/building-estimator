@@ -16,6 +16,10 @@ function simplifyFraction(numerator, denominator) {
 }
 
 export const unFormattedFractionMultiply = function (entry, multiplier) {
+  console.log(entry);
+  if (entry === undefined) {
+    return [0];
+  }
   const parts = entry.split(" ");
   const feet = parts[0] === undefined ? 0 : Number(parts[0]);
   const inches = parts[1] === undefined ? 0 : Number(parts[1]);

@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./CalculationRow.module.css";
 import FeetInchesInput from "./FeetInchesInput";
 import { unFormattedFractionMultiply } from "../utils/fraction.js";
+import React, { useEffect } from "react";
 
 const CalculationRow = ({ rowId, onTab, inputRef }) => {
   const [values, setValues] = useState({
@@ -9,23 +10,39 @@ const CalculationRow = ({ rowId, onTab, inputRef }) => {
     num1: 1,
     num2: 1,
     num3: 1,
+    originalText: '1"',
     text: "",
     result: 1,
   });
 
+  useEffect(() => {
+    // This runs once when the component is mounted
+    console.log("Page loaded!");
+    rowCalculate();
+  });
+
+  const rowCalculate = () => {
+    // Your logic or calculations
+    console.log("Running my calculation...");
+
+    const result = values.result;
+    setValues({ ...values, result });
+  };
+
   const [formattedInput, setFormattedInput] = useState("");
 
   const handleChange = (e) => {
+    console.log(values.text);
     const { name, value } = e.target;
     const newValues = { ...values, [name]: value };
+    console.log(newValues);
     const result = newValues.num1 * newValues.num2 * newValues.num3;
     setValues({ ...newValues, result });
   };
 
-  const handleFormattedInputChange = (originalValue, formattedValue) => {
-    setFormattedInput(formattedValue);
+  const applyResultByMultiplying = function () {
     const fIObj = unFormattedFractionMultiply(
-      originalValue,
+      values.originalValue,
       values.num1 * values.num2 * values.num3
     );
 
@@ -38,6 +55,15 @@ const CalculationRow = ({ rowId, onTab, inputRef }) => {
       ...prevValues,
       result: formattedResult,
     }));
+  };
+
+  const handleFormattedInputChange = (originalValue, formattedValue) => {
+    setValues((prevValues) => ({
+      ...prevValues,
+      originalText: originalValue,
+    }));
+    setFormattedInput(formattedValue);
+    applyResultByMultiplying(originalValue);
   };
 
   return (
