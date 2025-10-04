@@ -2,9 +2,9 @@
 - Multipliers 3 input field
 - Main input with feet + inches
 - Default cursor (tabbed from one input to next)
+- Final text field will be multiplied those 4 inputs, e.g. 10.00 oft
 
 --- TO DO ---
-- Final text field will be multiplied those 4 inputs, e.g. 10.00 oft
 - Item from + Button
 - Addition subtotal
 - Subtraction subtotal

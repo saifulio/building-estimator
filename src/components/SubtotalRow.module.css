@@ -1,0 +1,19 @@
+.subtotalRow {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0;
+  border-top: 1px solid #ccc;
+}
+
+.subtotalLabel {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.subtotalInput {
+  width: 120px;
+  text-align: right;
+  padding: 5px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+}
