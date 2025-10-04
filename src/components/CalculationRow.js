@@ -12,7 +12,7 @@ const CalculationRow = ({ rowId, onTab, inputRef }) => {
     num3: 1,
     originalText: '1"',
     text: "",
-    result: 1,
+    result: "0'-0\"",
   });
 
   useEffect(() => {
@@ -32,39 +32,35 @@ const CalculationRow = ({ rowId, onTab, inputRef }) => {
   const [formattedInput, setFormattedInput] = useState("");
 
   const handleChange = (e) => {
-    console.log(values.text);
-    const { name, value } = e.target;
-    const newValues = { ...values, [name]: value };
-    console.log(newValues);
-    const result = newValues.num1 * newValues.num2 * newValues.num3;
-    setValues({ ...newValues, result });
-  };
+  const { name, value } = e.target;
+  const newValues = { ...values, [name]: value };
+  updateResult(newValues);
+};
 
-  const applyResultByMultiplying = function () {
-    const fIObj = unFormattedFractionMultiply(
-      values.originalValue,
-      values.num1 * values.num2 * values.num3
-    );
-
+const updateResult = (newValues) => {
+  // Multiply num1, num2, num3 together
+  const multiplier = newValues.num1 * newValues.num2 * newValues.num3;
+  
+  // Use unFormattedFractionMultiply with the original text and multiplier
+  if (newValues.originalText) {
+    const fIObj = unFormattedFractionMultiply(newValues.originalText, multiplier);
     let fractionPart = "";
     if (fIObj.numerator !== 0) {
       fractionPart = ` ${fIObj.numerator}/${fIObj.denominator}`;
     }
     const formattedResult = `${fIObj.newFeet}'-${fIObj.newInches}${fractionPart}"`;
-    setValues((prevValues) => ({
-      ...prevValues,
-      result: formattedResult,
-    }));
-  };
+    setValues({ ...newValues, result: formattedResult });
+  }
+};
 
-  const handleFormattedInputChange = (originalValue, formattedValue) => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      originalText: originalValue,
-    }));
-    setFormattedInput(formattedValue);
-    applyResultByMultiplying(originalValue);
+const handleFormattedInputChange = (originalValue, formattedValue) => {
+  const newValues = {
+    ...values,
+    originalText: originalValue,
   };
+  setFormattedInput(formattedValue);
+  updateResult(newValues);
+};
 
   return (
     <div className={styles.calculationRow}>
